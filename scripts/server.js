@@ -1,6 +1,5 @@
 const fs = require("fs");
 
-console.log(hash_val);
 //Create app using express.js
 const port = process.env.PORT || 3000;
 const express = require("express");
