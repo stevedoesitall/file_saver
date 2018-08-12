@@ -1,0 +1,13 @@
+#save_block {
+    display: inline;
+}
+
+.values {
+    display: block;
+    margin-bottom: 2em;
+}
+
+button {
+    display: block;
+    margin-bottom: 1em;
+}

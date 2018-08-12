@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+    <h1>Save Test</h1>
+<body>
+    <div id="inputs">
+        <label>Title: <input class="values" name="title" type="text" value="" id="title"/></label>
+        <label>Description: <input class="values" name="desc" type="text" value="" id="desc"/></label>
+    </div>
+    <div id="buttons">
+        <label>Select File: <input id="loaded_file" type="file"></label>
+        <button id="load">Load</button>
+        <div id="save_block">
+            <input name="file_name" placeholder="file name" type="text" value="" id="file_name"/>
+            <button id="save">Save</button>
+        </div>
+        <button id="submit">Submit</button>
+    </div>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
