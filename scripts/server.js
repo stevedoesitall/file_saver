@@ -11,7 +11,7 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 const dir = path.join(__dirname, "../");
-const folder = "/Users/stephengiordano/Desktop/Test/";
+const folder = "/Users/stephengiordano/Desktop/JSON Files/";
 
 app.use(express.static(dir));
 app.use(body_parser.urlencoded({ extended: false }));

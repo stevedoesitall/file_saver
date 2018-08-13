@@ -38,7 +38,7 @@ $("#load").on("click", function load_inputs() {
         success: function(response) {
             console.log(response);
             if (response.code == "ENOENT") {
-                alert("Error: File must be in parent Test directory!");
+                alert("Error: File must be in parent JSON Files directory!");
             }
             else {
                 const json_response = JSON.parse(response);
@@ -69,7 +69,7 @@ $("#delete").on("click", function delete_file() {
             success: function(response) {
                 console.log(response);
                 if (response.code == "ENOENT") {
-                    alert("Error: File must be in parent Test directory!");
+                    alert("Error: File must be in parent JSON Files directory!");
                 }
                 else {
                     alert(file + " deleted.");

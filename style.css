@@ -4,6 +4,7 @@
 }
 
 #input_loader, #input_block {
+    width: 50%;
     margin-bottom: 2em;
     padding-left: 1em;
     padding-bottom: 1em;
