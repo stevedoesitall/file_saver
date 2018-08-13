@@ -1,6 +1,4 @@
 const fs = require("fs");
-const date_vars = require("./date_vars.js");
-const folder_name = date_vars.current_month + " " + date_vars.current_year;
 
 //Create app using express.js
 const port = process.env.PORT || 3000;

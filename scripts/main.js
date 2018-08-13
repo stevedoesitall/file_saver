@@ -1,4 +1,9 @@
-$("#save").on("click", function save_inputs() {
+const save_button = document.getElementById("save");
+const load_button = document.getElementById("load");
+const clear_button = document.getElementById("clear");
+const delete_button = document.getElementById("delete");
+
+save_button.addEventListener("click", function save_inputs() {
     const id = "save";
     const data = {};
         data.title = document.getElementById("title").value;
@@ -20,7 +25,7 @@ $("#save").on("click", function save_inputs() {
     alert(data.file_name + ".json saved!");
 });
 
-$("#load").on("click", function load_inputs() {
+load_button.addEventListener("click", function load_inputs() {
     const id = "load";
     const file_path = document.querySelectorAll("#loaded_file")[0].files[0];
     let file;
@@ -49,7 +54,7 @@ $("#load").on("click", function load_inputs() {
     });
 });
 
-$("#delete").on("click", function delete_file() {
+delete_button.addEventListener("click", function delete_file() {
     const delete_confirm = confirm("Really delete?");
     if (delete_confirm) {
         const id = "delete";
@@ -80,7 +85,7 @@ $("#delete").on("click", function delete_file() {
     }
 });
 
-$("#clear").on("click", function clear_inputs() {
+clear_button.addEventListener("click", function clear_inputs() {
     const all_inputs = document.querySelectorAll(".values");
     all_inputs.forEach(input => {
         input.value = "";
