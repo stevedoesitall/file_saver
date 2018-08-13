@@ -9,18 +9,25 @@
 </head>
     <h1>Save Test</h1>
 <body>
-    <div id="inputs">
-        <label>Title: <input class="values" name="title" type="text" value="" id="title"/></label>
-        <label>Description: <input class="values" name="desc" type="text" value="" id="desc"/></label>
-    </div>
-    <div id="buttons">
-        <label>Select File: <input id="loaded_file" type="file"></label>
-        <button id="load">Load</button>
-        <div id="save_block">
-            <input name="file_name" placeholder="file name" type="text" value="" id="file_name"/>
-            <button id="save">Save</button>
+    <div id="input_loader">
+        <h2>Load Your File</h2>
+        <label>Select File: <input id="loaded_file" type="file"/></label>
+        <div id="file_buttons">
+            <button class="file_button" id="load">Load</button>
+            <button class="file_button" id="delete">Delete</button>
         </div>
-        <button id="submit">Submit</button>
+    </div>
+    <div id="input_block">
+        <div id="inputs">
+            <h2>Enter Inputs</h2>
+            <label>Title: <input class="values" name="title" type="text" value="" id="title"/></label>
+            <label>Description: <input class="values" name="desc" type="text" value="" id="desc"/></label>
+        </div>
+        <div id="input_saver">
+            <label>Save File: <input name="file_name" placeholder="file name" type="text" value="" id="file_name"/></label>
+            <button class="non_file_button" id="save">Save</button>
+            <button class="non_file_button" id="submit">Submit</button>
+        </div>
     </div>
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/main.js"></script>
