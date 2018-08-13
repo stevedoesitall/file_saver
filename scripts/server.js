@@ -7,7 +7,6 @@ const body_parser = require("body-parser");
 const path = require("path");
 const http = require("http");
 const app = express();
-const server = http.createServer(app);
 const dir = path.join(__dirname, "../");
 const folder = "/Users/stephengiordano/Desktop/JSON Files/";
 

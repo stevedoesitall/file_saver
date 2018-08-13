@@ -2,7 +2,7 @@
 <p><b>Stack:</b> Vanilla JavaScript, Node.js, Express.js</p>
 <p>Simple UI for saving inputs to a JSON file on in a local directory. Note that due to security purposes, a top-level directory must be used to load and delete files, i.e. you can't have subdirectories.</p>
 <h2><b>Setup Instructions:</b></h2>
-<p><b>Part 1 - Setup NodeJS:</b></p>
+<p><b>Part 1 - Setup Node.js:</b></p>
 <ol>
     <li>Download and install Node.js: https://nodejs.org/en/download/.</li>
     <li>Open the downloaded .pkg file and follow the onscreen instructions.</li>
