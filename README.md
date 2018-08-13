@@ -1,14 +1,15 @@
 <h1><b>File Saver</b></h1>
 <p><b>Stack:</b> jQuery, NodeJS, Express.js</p>
 <p>Simple UI for saving inputs to a JSON file on in a local directory. Note that due to security purposes, a top-level directory must be used to load and delete files, i.e. you can't have subdirectories.</p>
-<p><b>Setup Instructions Part 1 (Setup Node):</b></p>
+<h2><b>Setup Instructions:</b></h2>
+<p><b>Part 1 - Setup NodeJS:</b></p>
 <ol>
     <li>Download and install NodeJS: https://nodejs.org/en/download/.</li>
     <li>Open the downloaded .pkg file and follow the onscreen instructions.</li>
     <li>Once finished, open Terminal (Mac) or Command Prompt (Windows).</li>
     <li>Type "node -v" (no quotes) and press enter to confirm Node installation. You should see something like v8.11.3.</li>
 </ol>
-<p><b>Setup Instructions Part 2 (Setup Server):</b></p>
+<p><b>Part 2 - Setup Server:</b></p>
 <ol>
     <li>On your Desktop, create a folder named "JSON Files".</li>
     <li>Click "Clone or download" button then "Download ZIP" on https://github.com/stevedoesitall/file_saver.</li>
