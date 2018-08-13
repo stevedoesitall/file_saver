@@ -80,3 +80,9 @@ $("#delete").on("click", function delete_file() {
     }
 });
 
+$("#clear").on("click", function clear_inputs() {
+    const all_inputs = document.querySelectorAll(".values");
+    all_inputs.forEach(input => {
+        input.value = "";
+    });
+});
