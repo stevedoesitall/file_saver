@@ -6,7 +6,7 @@
 <ol>
     <li>Download and install NodeJS: https://nodejs.org/en/download/.</li>
     <li>Open the downloaded .pkg file and follow the onscreen instructions.</li>
-    <li>Once finished, open the Terminal (Mac) or the Command Prompt (Windows)command-line interface (CLI).</li>
+    <li>Once finished, open the Terminal (Mac) or the Command Prompt (Windows)  command-line interface (CLI).</li>
     <li>Type "node -v" (no quotes) and press enter to confirm Node installation. You should see something like v8.11.3.</li>
 </ol>
 <p><b>Part 2 - Setup Server:</b></p>
