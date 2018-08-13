@@ -17,7 +17,6 @@ app.use(body_parser.json());
 app.listen(port, () => console.log("File saver started on port " + port));
 
 app.post("/server", function(req, res) {
-    console.log(req);
     const id = req.body.id;
     if (id == "save") {
         const data = req.body.data;
