@@ -11,7 +11,7 @@
 </ol>
 <p><b>Part 2 - Setup Server:</b></p>
 <ol>
-    <li>On your Desktop, create a folder named "JSON Files".</li>
+    <li>On your Desktop, create a folder named "JSON Files". This will be where all your files are saved.</li>
     <li>Click "Clone or download" button then "Download ZIP" on https://github.com/stevedoesitall/file_saver.</li>
     <li>Unzip the file_saver-master.zip file in your Downloads folder.</li>
     <li>Enter "cd" (no quotes) then hit "Enter" in the command line. This will bring you to the top directory.</li>
