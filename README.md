@@ -1,5 +1,5 @@
 <h1><b>File Saver</b></h1>
-<p><b>Stack:</b> jQuery, NodeJS, Express.js</p>
+<p><b>Stack:</b> VanillaJS, NodeJS, Express.js</p>
 <p>Simple UI for saving inputs to a JSON file on in a local directory. Note that due to security purposes, a top-level directory must be used to load and delete files, i.e. you can't have subdirectories.</p>
 <h2><b>Setup Instructions:</b></h2>
 <p><b>Part 1 - Setup NodeJS:</b></p>
