@@ -52,7 +52,6 @@ load_button.addEventListener("click", function load_inputs() {
     }
     else {
         file = file_path.name;
-        document.getElementById("file_name").value = file.substr(0,file.indexOf(".json"));        ;
     }
     $.ajax({
         type: "POST",
@@ -62,11 +61,13 @@ load_button.addEventListener("click", function load_inputs() {
             console.log(response);
             if (response.code == "ENOENT") {
                 alert("Error: File must be in parent Test directory!");
+                document.getElementById("loaded_file").value = "";
             }
             else {
                 const json_response = JSON.parse(response);
                 document.getElementById("title").value = json_response.title;
                 document.getElementById("desc").value = json_response.desc;
+                document.getElementById("file_name").value = file.substr(0,file.indexOf(".json"));
             }
         }
     });
@@ -93,6 +94,7 @@ delete_button.addEventListener("click", function delete_file() {
                 console.log(response);
                 if (response.code == "ENOENT") {
                     alert("Error: File must be in parent Test directory!");
+                    document.getElementById("loaded_file").value = "";
                 }
                 else {
                     alert(file + " deleted.");
