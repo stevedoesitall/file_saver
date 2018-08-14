@@ -5,7 +5,6 @@ const port = process.env.PORT || 3000;
 const express = require("express");
 const body_parser = require("body-parser");
 const path = require("path");
-const http = require("http");
 const app = express();
 const dir = path.join(__dirname, "../");
 const folder = "/Users/stephengiordano/Desktop/JSON Files/";
