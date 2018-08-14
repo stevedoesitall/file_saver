@@ -63,7 +63,7 @@ load_button.addEventListener("click", function load_inputs() {
                 alert("Error: File must be in parent Test directory!");
                 document.getElementById("loaded_file").value = "";
             }
-            else if (response == "undefined") {
+            else if (typeof response != "object") {
                 alert("Error: File must be in JSON format!");
             }
             else {
