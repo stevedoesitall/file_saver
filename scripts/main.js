@@ -63,14 +63,16 @@ load_button.addEventListener("click", function load_inputs() {
                 alert("Error: File must be in parent Test directory!");
                 document.getElementById("loaded_file").value = "";
             }
-            else if (typeof response != "object") {
-                alert("Error: File must be in JSON format!");
-            }
             else {
-                const json_response = JSON.parse(response);
-                document.getElementById("title").value = json_response.title;
-                document.getElementById("desc").value = json_response.desc;
-                document.getElementById("file_name").value = file.substr(0,file.indexOf(".json"));
+                try {
+                    const json_response = JSON.parse(response);
+                    console.log(typeof response);
+                    document.getElementById("title").value = json_response.title;
+                    document.getElementById("desc").value = json_response.desc;
+                    document.getElementById("file_name").value = file.substr(0,file.indexOf(".json"));
+                } catch(err) {
+                    alert("Error: File is not in valid JSON format!");
+                }
             }
         }
     });
