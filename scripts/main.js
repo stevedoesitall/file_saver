@@ -2,7 +2,7 @@ const save_button = document.getElementById("save");
 const load_button = document.getElementById("load");
 const clear_button = document.getElementById("clear");
 const delete_button = document.getElementById("delete");
-const subsmit_button = document.getElementById("submit");
+const submit_button = document.getElementById("submit");
 
 save_button.addEventListener("click", function save_inputs() {
     const id = "save";
@@ -119,6 +119,6 @@ clear_button.addEventListener("click", function clear_inputs() {
     });
 });
 
-save_button.addEventListener("click", function save_inputs() {
-    console.log("LOL this doesn't do anything.");
+submit_button.addEventListener("click", function submit_inputs() {
+    console.log("This doesn't do anything.");
 });
