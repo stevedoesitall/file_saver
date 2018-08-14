@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 const express = require("express");
 const body_parser = require("body-parser");
 const path = require("path");
+const http = require("http");
 const app = express();
 const dir = path.join(__dirname, "../");
 const folder = "/Users/stephengiordano/Desktop/JSON Files/";
@@ -19,14 +20,34 @@ app.post("/server", function(req, res) {
     if (id == "save") {
         const data = req.body.data;
         const file = JSON.parse(data).file_name;
-        fs.writeFileSync(folder + file + ".json", data, (err) => {
-            if (err){
-                res.send(err);
-            }
-            else {
-                res.send("The file has been saved!");
-            }
-        });
+        if (req.body.overwrite) {
+            fs.writeFile(folder + file + ".json", data, (err) => {
+                if (err) {
+                    res.send("Error", err);
+                }
+                else {
+                    res.send("Success: The file has been saved!");
+                }
+            });
+        }
+        else {
+            fs.readFile(folder + file + ".json", (read_err) => {
+                if (read_err) {
+                    console.log(read_err);
+                    fs.writeFile(folder + file + ".json", data, (err) => {
+                        if (err) {
+                            res.send("Error", err);
+                        }
+                        else {
+                            res.send("Success: The file has been saved!");
+                        }
+                    });
+                }
+                else {
+                    res.send("EXISTS");
+                }
+            });
+        }
     }
     else if (id == "load") {
         const file = req.body.data;
