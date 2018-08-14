@@ -70,7 +70,8 @@ load_button.addEventListener("click", function load_inputs() {
                     document.getElementById("title").value = json_response.title;
                     document.getElementById("desc").value = json_response.desc;
                     document.getElementById("file_name").value = file.substr(0,file.indexOf(".json"));
-                } catch(err) {
+                } 
+                catch(err) {
                     alert("Error: File is not in valid JSON format!");
                 }
             }
