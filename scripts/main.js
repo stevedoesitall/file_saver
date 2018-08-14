@@ -22,7 +22,7 @@ save_button.addEventListener("click", function save_inputs() {
         success: function(response) {
             if (response == "EXISTS") {
                 console.log(response);
-                const overwrite_confirm = confirm(data.file_name + " already exists. Overwrite?");
+                const overwrite_confirm = confirm(data.file_name + ".json already exists. Overwrite?");
                 if (overwrite_confirm) {
                     $.ajax({
                         type: "POST",
