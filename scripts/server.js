@@ -8,7 +8,8 @@ const path = require("path");
 const http = require("http");
 const app = express();
 const dir = path.join(__dirname, "../");
-const folder = "/Users/stephengiordano/Desktop/JSON Files/";
+const file_folder = "JSON Files"
+const folder = path.join(dir, "../") + file_folder + "/";
 
 app.use(express.static(dir));
 app.use(body_parser.urlencoded({ extended: false }));

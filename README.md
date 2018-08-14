@@ -16,6 +16,8 @@
     <li>Unzip the file_saver-master.zip file in your Downloads folder.</li>
     <li>In the CLI, enter "cd" (no quotes) then hit "Enter" in the command line. This will bring you to the top directory.</li>
     <li>Find the path to the "file_saver-master" folder and navigate to it in the CLI. For instance, if it's still in your Downloads folder, you can type "cd Downloads/file_saver-master" then hit enter.</li>
+    <li>You'll need to initialize NPM, Node Package Manager, next. In the CLI, enter "npm init" and hit enter. You'll be given a number of prompts; click "Enter" for each one to keep the default values.</li>
+    <li>Next, you'll need to install Express.js, a Node.js framework, to initialize the server. Simply type "npm express install --save", and Express.js will automatically be added to the package.</li>
     <li>To run the Node script, in the CLI, type "node scripts/server.js" then hit enter. You must be in the file_saver-master folder in the CLI for this to work.</li>
     <li>This creates a local server on your machine on port 3000. You should see a confirmation prompt in the terminal: "File saver started on port 3000".</li>
     <li>To access the local server, open a browser window (preferably Chrome) and navigate to http://localhost:3000/. If all went well, you'll see the the UI load in your browser window.</li>
