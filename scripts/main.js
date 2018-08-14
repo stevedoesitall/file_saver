@@ -74,6 +74,7 @@ load_button.addEventListener("click", function load_inputs() {
                 } 
                 catch(err) {
                     alert("Error: File is not in valid JSON format!");
+                    document.getElementById("loaded_file").value = "";
                 }
             }
         }
