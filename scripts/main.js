@@ -75,7 +75,7 @@ load_button.addEventListener("click", function load_inputs() {
         .then( function(resp_data) {
             console.log(resp_data);
             if (resp_data.code == "ENOENT") {
-                alert("Error: File must be in parent Test directory!");
+                alert("Error: File must be in the parent JSON Files directory!");
                 document.getElementById("loaded_file").value = "";
             }
             else {
@@ -117,7 +117,7 @@ delete_button.addEventListener("click", function delete_file() {
         .then((resp) => resp.json())
         .then( function(resp_data) {
             if (resp_data.code == "ENOENT") {
-                alert("Error: File must be in parent Test directory!");
+                alert("Error: File must be in the parent JSON Files directory!");
                 document.getElementById("loaded_file").value = "";
             }
             else {
