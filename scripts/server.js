@@ -24,10 +24,10 @@ app.post("/server", function(req, res) {
         if (req.body.overwrite) {
             fs.writeFile(folder + file + ".json", data, (err) => {
                 if (err) {
-                    res.send("Error", err);
+                    res.send(JSON.stringify({"message":err}));
                 }
                 else {
-                    res.send("Success: The file has been saved!");
+                    res.send(JSON.stringify({"message":"Success!"}));
                 }
             });
         }
@@ -37,15 +37,15 @@ app.post("/server", function(req, res) {
                     console.log(read_err);
                     fs.writeFile(folder + file + ".json", data, (err) => {
                         if (err) {
-                            res.send("Error", err);
+                            res.send(JSON.stringify({"message":err}));
                         }
                         else {
-                            res.send("Success: The file has been saved!");
+                            res.send(JSON.stringify({"message":"Success!"}));
                         }
                     });
                 }
                 else {
-                    res.send("EXISTS");
+                    res.send(JSON.stringify({"message":"EXISTS"}));
                 }
             });
         }
@@ -68,7 +68,7 @@ app.post("/server", function(req, res) {
                 res.send(err);
             }
             else {
-                res.send(data);
+                res.send(JSON.stringify({"message":"Success!"}));
             }
         });
     }
