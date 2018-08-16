@@ -24,32 +24,52 @@ save_button.addEventListener("click", function save_inputs() {
         },
         body: JSON.stringify({id: id, data: data_string})
     })
-    .then((resp) => resp.json())
-    .then( function(resp_data) {
-        console.log(resp_data);
-        if (resp_data.message == "EXISTS") {
-            console.log(resp_data);
-            const overwrite_confirm = confirm(data.file_name + ".json already exists. Overwrite?");
-            if (overwrite_confirm) {
-                fetch("/server", {
-                    method: "post",
-                    headers: {
-                        "Accept" : "application/json",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({id: id, data: data_string, overwrite: true})
-                })
-                    .then((resp) => resp.json())
-                    .then( function(resp_data) {
-                        console.log(resp_data);
-                    });
-                alert(data.file_name + ".json saved!");
+    .then(
+        function(response) {
+            if (response.status != 200) {
+                console.log("Error: " + response.status);
+                return;
             }
+
+            response.json().then(
+                function(resp_data) {
+                    console.log(resp_data);
+                    if (resp_data.message == "EXISTS") {
+                        console.log(resp_data);
+                        const overwrite_confirm = confirm(data.file_name + ".json already exists. Overwrite?");
+                        if (overwrite_confirm) {
+                            fetch("/server", {
+                                method: "post",
+                                headers: {
+                                    "Accept" : "application/json",
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({id: id, data: data_string, overwrite: true})
+                            })
+                                .then(
+                                    function(response) {
+                                        if (response.status != 200) {
+                                            console.log("Error: " + response.status);
+                                            return;
+                                        }
+
+                                        response.json().then(
+                                            function(resp_data) {
+                                                console.log(resp_data); 
+                                            }
+                                        )
+                                    }
+                                )
+                            alert(data.file_name + ".json saved!");
+                        }
+                    }
+                    else {
+                        alert(data.file_name + ".json saved!");
+                    }
+                }
+            )
         }
-        else {
-            alert(data.file_name + ".json saved!");
-        }
-    });
+    )
 });
 
 load_button.addEventListener("click", function load_inputs() {
@@ -71,26 +91,36 @@ load_button.addEventListener("click", function load_inputs() {
         },
         body: JSON.stringify({id: id, data: file})
     })
-        .then((resp) => resp.json())
-        .then( function(resp_data) {
-            console.log(resp_data);
-            if (resp_data.code == "ENOENT") {
-                alert("Error: File must be in the parent JSON Files directory!");
-                document.getElementById("loaded_file").value = "";
-            }
-            else {
-                try {
-                    document.getElementById("title").value = resp_data.title;
-                    document.getElementById("desc").value = resp_data.desc;
-                    document.getElementById("file_name").value = file.substr(0,file.indexOf(".json"));
-                } 
-                catch(err) {
-                    alert("Error: File is not in valid JSON format!");
-                    document.getElementById("loaded_file").value = "";
-                    console.log(err);
+        .then(
+            function(response) {
+                if (response.status != 200) {
+                    console.log("Error: " + response.status);
+                    return;
                 }
+
+                response.json().then(
+                    function(resp_data) {
+                        console.log(resp_data);
+                        if (resp_data.code == "ENOENT") {
+                            alert("Error: File must be in the parent JSON Files directory!");
+                            document.getElementById("loaded_file").value = "";
+                        }
+                        else {
+                            try {
+                                document.getElementById("title").value = resp_data.title;
+                                document.getElementById("desc").value = resp_data.desc;
+                                document.getElementById("file_name").value = file.substr(0,file.indexOf(".json"));
+                            } 
+                            catch(err) {
+                                alert("Error: File is not in valid JSON format!");
+                                document.getElementById("loaded_file").value = "";
+                                console.log(err);
+                            }
+                        }
+                    }
+                )
             }
-        });
+        )
     });
 
 delete_button.addEventListener("click", function delete_file() {
@@ -114,17 +144,26 @@ delete_button.addEventListener("click", function delete_file() {
             },
             body: JSON.stringify({id: id, data: file})
         })
-        .then((resp) => resp.json())
-        .then( function(resp_data) {
-            if (resp_data.code == "ENOENT") {
-                alert("Error: File must be in the parent JSON Files directory!");
-                document.getElementById("loaded_file").value = "";
+        .then(
+            function(response) {
+                if (response.status != 200) {
+                    console.log("Error: " + response.status);
+                    return;
+                }
+                response.json().then(
+                    function(resp_data) {
+                        if (resp_data.code == "ENOENT") {
+                            alert("Error: File must be in the parent JSON Files directory!");
+                            document.getElementById("loaded_file").value = "";
+                        }
+                        else {
+                            alert(file + " deleted.");
+                            document.getElementById("loaded_file").value = "";
+                        }
+                    }
+                )
             }
-            else {
-                alert(file + " deleted.");
-                document.getElementById("loaded_file").value = "";
-            }
-        });
+        )
     }
 });
 
