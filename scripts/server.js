@@ -1,5 +1,4 @@
 const fs = require("fs");
-const s = require("./squery");
 
 //Create app using express.js
 const port = process.env.PORT || 3000;
@@ -15,38 +14,38 @@ const folder = path.join(dir, "../") + file_folder + "/";
 app.use(express.static(dir));
 app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
-app.listen(port, () => s.cl("File saver started on port " + port));
+app.listen(port, () => console.log("File saver started on port " + port));
 
 app.post("/server", function(req, res) {
     const id = req.body.id;
     if (id == "save") {
         const data = req.body.data;
-        const file = s.parse(data).file_name;
+        const file = JSON.parse(data).file_name;
         if (req.body.overwrite) {
             fs.writeFile(folder + file + ".json", data, (err) => {
                 if (err) {
-                    res.send(s.string({"message":err}));
+                    res.send(string({"message":err}));
                 }
                 else {
-                    res.send(s.string({"message":"Success!"}));
+                    res.send(string({"message":"Success!"}));
                 }
             });
         }
         else {
             fs.readFile(folder + file + ".json", (read_err) => {
                 if (read_err) {
-                    s.cl(read_err);
+                    console.log(read_err);
                     fs.writeFile(folder + file + ".json", data, (err) => {
                         if (err) {
-                            res.send(s.string({"message":err}));
+                            res.send(string({"message":err}));
                         }
                         else {
-                            res.send(s.string({"message":"Success!"}));
+                            res.send(string({"message":"Success!"}));
                         }
                     });
                 }
                 else {
-                    res.send(s.string({"message":"EXISTS"}));
+                    res.send(string({"message":"EXISTS"}));
                 }
             });
         }
@@ -69,7 +68,7 @@ app.post("/server", function(req, res) {
                 res.send(err);
             }
             else {
-                res.send(s.string({"message":"Success!"}));
+                res.send(string({"message":"Success!"}));
             }
         });
     }
