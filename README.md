@@ -1,6 +1,6 @@
 <h1><b>File Saver</b></h1>
 <p><b>Stack:</b> Vanilla JS, Node.js, Express.js. This also uses "sQuery" helper functions from the squery.js modules file.</p>
-<b><p>A simple UI for saving inputs to a JSON file in a local directory. Note that due to security purposes, a top-level directory must be used to load and delete files, i.e. you can't have subdirectories.</b></p>
+<b>Description:</b><p>A simple UI for saving inputs to a JSON file in a local directory. Note that due to security purposes, a top-level directory must be used to load and delete files, i.e. you can't have subdirectories.</p>
 <h2><b>Setup Instructions:</b></h2>
 <p><b>Part 1 - Setup Node.js:</b></p>
 <ol>
