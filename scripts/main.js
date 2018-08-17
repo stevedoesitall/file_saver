@@ -1,16 +1,18 @@
-const save_button = document.getElementById("save");
-const load_button = document.getElementById("load");
-const clear_button = document.getElementById("clear");
-const delete_button = document.getElementById("delete");
-const submit_button = document.getElementById("submit");
+import {get_id, qsa, string, cl, headers} from "./squery.js";
+
+const save_button = get_id("save");
+const load_button = get_id("load");
+const clear_button = get_id("clear");
+const delete_button = get_id("delete");
+const submit_button = get_id("submit");
 
 save_button.addEventListener("click", function save_inputs() {
     const id = "save";
     const data = {};
-        data.title = document.getElementById("title").value;
-        data.desc = document.getElementById("desc").value;
-        data.file_name = document.getElementById("file_name").value;
-    const data_string = JSON.stringify(data);
+        data.title = get_id("title").value;
+        data.desc = get_id("desc").value;
+        data.file_name = get_id("file_name").value;
+    const data_string = string(data);
     if (!data.file_name) {
         alert("Please name your file.");
         return false;
@@ -18,63 +20,51 @@ save_button.addEventListener("click", function save_inputs() {
 
     fetch("/server", {
         method: "post",
-        headers: {
-            "Accept" : "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({id: id, data: data_string})
+        headers: headers,
+        body: string({id: id, data: data_string})
     })
     .then(
         function(response) {
             if (response.status != 200) {
-                console.log("Error: " + response.status);
+                cl("Error: " + response.status);
                 return;
             }
-
-            response.json().then(
-                function(resp_data) {
-                    console.log(resp_data);
-                    if (resp_data.message == "EXISTS") {
-                        console.log(resp_data);
-                        const overwrite_confirm = confirm(data.file_name + ".json already exists. Overwrite?");
-                        if (overwrite_confirm) {
-                            fetch("/server", {
-                                method: "post",
-                                headers: {
-                                    "Accept" : "application/json",
-                                    "Content-Type": "application/json"
-                                },
-                                body: JSON.stringify({id: id, data: data_string, overwrite: true})
+    response.json().then(
+        function(resp_data) {
+            cl(resp_data);
+            if (resp_data.message == "EXISTS") {
+                cl(resp_data);
+                const overwrite_confirm = confirm(data.file_name + ".json already exists. Overwrite?");
+                if (overwrite_confirm) {
+                    fetch("/server", {
+                        method: "post",
+                        headers: headers,
+                        body: string({id: id, data: data_string, overwrite: true})
+                    })
+                    .then(
+                        function(response) {
+                            if (response.status != 200) {
+                                cl("Error: " + response.status);
+                                return;
+                            }
+                            response.json().then(
+                                function(resp_data) {
+                                    cl(resp_data); 
                             })
-                                .then(
-                                    function(response) {
-                                        if (response.status != 200) {
-                                            console.log("Error: " + response.status);
-                                            return;
-                                        }
-
-                                        response.json().then(
-                                            function(resp_data) {
-                                                console.log(resp_data); 
-                                            }
-                                        )
-                                    }
-                                )
-                            alert(data.file_name + ".json saved!");
-                        }
-                    }
-                    else {
-                        alert(data.file_name + ".json saved!");
-                    }
+                        })
+                    alert(data.file_name + ".json saved!");
                 }
-            )
-        }
-    )
+            }
+            else {
+                alert(data.file_name + ".json saved!");
+            }
+        })
+    })
 });
 
 load_button.addEventListener("click", function load_inputs() {
     const id = "load";
-    const file_path = document.querySelectorAll("#loaded_file")[0].files[0];
+    const file_path = qsa("#loaded_file")[0].files[0];
     let file;
     if (file_path == null) {
         alert("Please select a file.");
@@ -85,49 +75,43 @@ load_button.addEventListener("click", function load_inputs() {
     }
     fetch("/server", {
         method: "post",
-        headers: {
-            "Accept" : "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({id: id, data: file})
+        headers: headers,
+        body: string({id: id, data: file})
     })
-        .then(
-            function(response) {
-                if (response.status != 200) {
-                    console.log("Error: " + response.status);
-                    return;
-                }
-
-                response.json().then(
-                    function(resp_data) {
-                        console.log(resp_data);
-                        if (resp_data.code == "ENOENT") {
-                            alert("Error: File must be in the parent JSON Files directory!");
-                            document.getElementById("loaded_file").value = "";
-                        }
-                        else {
-                            try {
-                                document.getElementById("title").value = resp_data.title;
-                                document.getElementById("desc").value = resp_data.desc;
-                                document.getElementById("file_name").value = file.substr(0,file.indexOf(".json"));
-                            } 
-                            catch(err) {
-                                alert("Error: File is not in valid JSON format!");
-                                document.getElementById("loaded_file").value = "";
-                                console.log(err);
-                            }
-                        }
-                    }
-                )
+    .then(
+        function(response) {
+            if (response.status != 200) {
+                cl("Error: " + response.status);
+                return;
             }
-        )
-    });
+        response.json().then(
+            function(resp_data) {
+            cl(resp_data);
+            if (resp_data.code == "ENOENT") {
+                alert("Error: File must be in the parent JSON Files directory!");
+                get_id("loaded_file").value = "";
+            }
+            else {
+                try {
+                    get_id("title").value = resp_data.title;
+                    get_id("desc").value = resp_data.desc;
+                    get_id("file_name").value = file.substr(0,file.indexOf(".json"));
+                } 
+                catch(err) {
+                    alert("Error: File is not in valid JSON format!");
+                    get_id("loaded_file").value = "";
+                    cl(err);
+                }
+            }
+        })
+    })
+});
 
 delete_button.addEventListener("click", function delete_file() {
     const delete_confirm = confirm("Really delete?");
     if (delete_confirm) {
         const id = "delete";
-        const file_path = document.querySelectorAll("#loaded_file")[0].files[0];
+        const file_path = qsa("#loaded_file")[0].files[0];
         let file;
         if (file_path == null) {
             alert("Please select a file.");
@@ -138,42 +122,37 @@ delete_button.addEventListener("click", function delete_file() {
         }
         fetch("/server", {
             method: "post",
-            headers: {
-                "Accept" : "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id: id, data: file})
+            headers: headers,
+            body: string({id: id, data: file})
         })
-        .then(
-            function(response) {
-                if (response.status != 200) {
-                    console.log("Error: " + response.status);
-                    return;
-                }
-                response.json().then(
-                    function(resp_data) {
-                        if (resp_data.code == "ENOENT") {
-                            alert("Error: File must be in the parent JSON Files directory!");
-                            document.getElementById("loaded_file").value = "";
-                        }
-                        else {
-                            alert(file + " deleted.");
-                            document.getElementById("loaded_file").value = "";
-                        }
-                    }
-                )
+    .then(
+        function(response) {
+            if (response.status != 200) {
+                cl("Error: " + response.status);
+                return;
             }
-        )
+            response.json().then(
+                function(resp_data) {
+                if (resp_data.code == "ENOENT") {
+                    alert("Error: File must be in the parent JSON Files directory!");
+                    get_id("loaded_file").value = "";
+                }
+                else {
+                    alert(file + " deleted.");
+                    get_id("loaded_file").value = "";
+                }
+            })
+        })
     }
 });
 
 clear_button.addEventListener("click", function clear_inputs() {
-    const all_inputs = document.querySelectorAll(".values");
+    const all_inputs = qsa(".values");
     all_inputs.forEach(input => {
         input.value = "";
     });
 });
 
 submit_button.addEventListener("click", function submit_inputs() {
-    console.log("This doesn't do anything.");
+    cl("This doesn't do anything.");
 });
