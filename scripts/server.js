@@ -1,3 +1,4 @@
+
 const fs = require("fs");
 
 //Create app using express.js
@@ -24,7 +25,7 @@ app.post("/server", function(req, res) {
         if (req.body.overwrite) {
             fs.writeFile(folder + file + ".json", data, (err) => {
                 if (err) {
-                    res.send(string({"message":err}));
+                    res.send(JSON.stringify({"message":err}));
                 }
                 else {
                     res.send(string({"message":"Success!"}));
