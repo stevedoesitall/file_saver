@@ -28,7 +28,7 @@ app.post("/server", function(req, res) {
                     res.send(JSON.stringify({"message":err}));
                 }
                 else {
-                    res.send(string({"message":"Success!"}));
+                    res.send(JSON.stringify({"message":"Success!"}));
                 }
             });
         }
@@ -38,15 +38,15 @@ app.post("/server", function(req, res) {
                     console.log(read_err);
                     fs.writeFile(folder + file + ".json", data, (err) => {
                         if (err) {
-                            res.send(string({"message":err}));
+                            res.send(JSON.stringify({"message":err}));
                         }
                         else {
-                            res.send(string({"message":"Success!"}));
+                            res.send(JSON.stringify({"message":"Success!"}));
                         }
                     });
                 }
                 else {
-                    res.send(string({"message":"EXISTS"}));
+                    res.send(JSON.stringify({"message":"EXISTS"}));
                 }
             });
         }
@@ -69,7 +69,7 @@ app.post("/server", function(req, res) {
                 res.send(err);
             }
             else {
-                res.send(string({"message":"Success!"}));
+                res.send(JSON.stringify({"message":"Success!"}));
             }
         });
     }

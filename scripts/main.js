@@ -33,7 +33,6 @@ save_button.addEventListener("click", function save_inputs() {
         function(resp_data) {
             cl(resp_data);
             if (resp_data.message == "EXISTS") {
-                cl(resp_data);
                 const overwrite_confirm = confirm(data.file_name + ".json already exists. Overwrite?");
                 if (overwrite_confirm) {
                     fetch("/server", {
