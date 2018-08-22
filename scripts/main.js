@@ -1,4 +1,4 @@
-import {get_id, qsa, string, cl, headers} from "./ditko.js";
+import {get_id, qsa, string, cl, headers} from "https://rawgit.com/stevedoesitall/ditkojs/master/ditko.js";
 
 const save_button = get_id("save");
 const load_button = get_id("load");
